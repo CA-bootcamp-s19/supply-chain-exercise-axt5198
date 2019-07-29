@@ -39,8 +39,8 @@ contract SupplyChain {
     uint sku;
     uint price;
     State state;
-    address seller;
-    address buyer;
+    address payable seller;
+    address payable buyer;
   }
 
   /* Create 4 events with the same name as each possible State (see above)
@@ -130,7 +130,7 @@ contract SupplyChain {
   function shipItem(uint sku)
     public sold(sku) verifyCaller(items[sku].seller)
   {
-    items[sku].sale = State.Shipped;
+    items[sku].state = State.Shipped;
     emit LogShipped(sku);
 
   }
